@@ -43,7 +43,7 @@ class ViewController: UIViewController, UISearchBarDelegate {
         
         let param = "&query=" + query
         
-        let url = URL(string: self.url + param)
+        let url = URL(string: self.url + param.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!)
         guard let requestUrl = url else { fatalError() }
         
         var request = URLRequest(url: requestUrl)
@@ -120,7 +120,6 @@ class ViewController: UIViewController, UISearchBarDelegate {
                 self.isCancelFlagKeyboard = true
                 self.search.becomeFirstResponder()
             }))
-
 
             present(alert, animated: true)
         }
